@@ -1,11 +1,11 @@
 # Specify phone tech before including full_phone
-$(call inherit-product, vendor/cm/config/gsm.mk)
+$(call inherit-product, vendor/slim/config/gsm.mk)
 
 # Release name
 PRODUCT_RELEASE_NAME := U8815
 
 # Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+$(call inherit-product, vendor/slim/config/common_full_phone.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/huawei/u8815/u8815.mk)
@@ -14,8 +14,11 @@ $(call inherit-product, device/huawei/u8815/u8815.mk)
 TARGET_SCREEN_HEIGHT := 800
 TARGET_SCREEN_WIDTH := 480
 
+PRODUCT_COPY_FILES += \
+    vendor/slim/prebuilt/hdpi/bootanimation.zip:system/media/bootanimation.zip
+
 # Device naming
-PRODUCT_NAME := cm_u8815
+PRODUCT_NAME := slim_u8815
 PRODUCT_DEVICE := u8815
 PRODUCT_BRAND := Huawei
 PRODUCT_MODEL := Ascend G300
