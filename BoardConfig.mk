@@ -32,10 +32,11 @@ TARGET_USE_SPARROW_BIONIC_OPTIMIZATION := true
 TARGET_AVOID_DRAW_TEXTURE_EXTENSION := true
 TARGET_USES_16BPPSURFACE_FOR_OPAQUE := true
 
+ARCH_ARM_HIGH_OPTIMIZATION := true 
 ARCH_ARM_HAVE_32_BYTE_CACHE_LINES := true
 
 TARGET_USES_ION := false
-BOARD_HAVE_OLD_ION_API := true
+
 
 TARGET_BOOTLOADER_BOARD_NAME := u8815
 TARGET_OTA_ASSERT_DEVICE := u8815,hwu8815,u8818,hwu8818
@@ -44,8 +45,9 @@ TARGET_SPECIFIC_HEADER_PATH := device/huawei/u8815/include
 
 # Audio
 #BOARD_USES_ALSA_AUDIO := true
-TARGET_QCOM_AUDIO_VARIANT := caf
+#TARGET_QCOM_AUDIO_VARIANT := caf
 TARGET_PROVIDES_LIBAUDIO := true
+COMMON_GLOBAL_CFLAGS += -DQCOM_VOIP_ENABLED
 
 
 # Lights
@@ -53,7 +55,8 @@ TARGET_PROVIDES_LIBLIGHTS := true
 
 # Camera
 BOARD_NEEDS_MEMORYHEAPPMEM := true
-COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB -DQCOM_VOIP_ENABLED
+COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
+
 
 # GPS
 BOARD_USES_QCOM_GPS := true
@@ -99,28 +102,28 @@ BOARD_FM_DEVICE := bcm4330
 BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 
 # Wi-Fi
-BOARD_WLAN_DEVICE := bcmdhd
-WPA_SUPPLICANT_VERSION := VER_0_8_X
-BOARD_WPA_SUPPLICANT_DRIVER := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
-BOARD_HOSTAPD_DRIVER := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_bcmdhd
-BOARD_LEGACY_NL80211_STA_EVENTS := true
-WIFI_DRIVER_FW_PATH_AP := "/system/etc/fw_4330_b2.bin"
-WIFI_DRIVER_FW_PATH_STA := "/system/etc/fw_4330_b2.bin"
-WIFI_DRIVER_FW_PATH_P2P := "/system/etc/fw_4330_b2.bin"
-WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/dhd/parameters/firmware_path"
-WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/dhd.ko"
-WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/fw_4330_b2.bin nvram_path=/system/etc/nvram_4330.txt"
-WIFI_DRIVER_MODULE_NAME := "dhd"
-WIFI_EXT_MODULE_PATH := "/system/lib/modules/cfg80211.ko"
-WIFI_EXT_MODULE_NAME := "cfg80211"
+BOARD_WLAN_DEVICE 			:= bcmdhd
+WPA_SUPPLICANT_VERSION 			:= VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER 		:= NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB 	:= lib_driver_cmd_bcmdhd
+BOARD_HOSTAPD_DRIVER 			:= NL80211
+BOARD_HOSTAPD_PRIVATE_LIB 		:= lib_driver_cmd_bcmdhd
+WIFI_DRIVER_MODULE_PATH     		:= "/system/lib/modules/bcmdhd.ko"
+WIFI_DRIVER_MODULE_NAME     		:= "bcmdhd"
+WIFI_DRIVER_MODULE_ARG      		:= "firmware_path=/system/etc/fw_4330_b2.bin nvram_path=/system/etc/nvram_4330.txt"
+WIFI_DRIVER_FW_PATH_PARAM   		:= "/sys/module/bcmdhd/parameters/firmware_path"
+WIFI_DRIVER_FW_PATH_STA     		:= "/system/etc/fw_4330_b2.bin"
+WIFI_DRIVER_FW_PATH_AP      		:= "/system/etc/fw_4330_b2.bin"
+WIFI_DRIVER_FW_PATH_P2P     		:= "/system/etc/fw_4330_b2.bin"
+BOARD_LEGACY_NL80211_STA_EVENTS		:= true
+#BOARD_USE_SERNUM_FOR_MAC 			:= true
 
 TARGET_CUSTOM_WIFI := ../../device/huawei/u8815/libhardware_legacy/wifi/wifi.c
 
 # Kernel 
-TARGET_KERNEL_SOURCE := kernel/huawei/u8815
-TARGET_KERNEL_CONFIG := cyanogenmod_u8815_defconfig
+TARGET_KERNEL_SOURCE := kernel/huawei/G300
+#TARGET_KERNEL_CUSTOM_TOOLCHAIN := linaro/bin/arm-linux-gnueabihf-
+TARGET_KERNEL_CONFIG := u8818_defconfig
 BOARD_KERNEL_CMDLINE := androidboot.hardware=huawei
 BOARD_KERNEL_BASE := 0x00200000
 BOARD_PAGE_SIZE := 2048

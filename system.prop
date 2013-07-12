@@ -4,6 +4,7 @@
 
 # Audio
 headset.hook.delay=500
+af.resampler.quality=255
 
 # Bluetooth
 ro.bluetooth.remote.autoconnect=true
@@ -15,29 +16,29 @@ ro.qualcomm.bluetooth.ftp=true
 ro.cwm.enable_key_repeat=true
 
 # Dalvik
-dalvik.vm.heapgrowthlimit=32m
-dalvik.vm.heapsize=96m
+dalvik.vm.heapsize=64m
 dalvik.vm.heapstartsize=5m
 
 # Display
 debug.hwc.dynThreshold=1.91
 debug.sf.swaprect=1
-ro.max.fling_velocity=4000
 ro.opengles.version=131072
 ro.sf.lcd_density=240
+debug.enabletr=true
 
 # Huawei
-ro.confg.hw_appfsversion=U8815VCM10_1_SYSIMG
-ro.confg.hw_appsbootversion=U8815VCM10_1_APPSBOOT
-ro.confg.hw_appversion=U8815VCM10_1_KERNEL
+ro.confg.hw_appfsversion=U8815VSLIM_SYSIMG
+ro.confg.hw_appsbootversion=U8815VSLIM_APPSBOOT
+ro.confg.hw_appversion=U8815VSLIM_KERNEL
 
-# Memory
-sys.mem.max_hidden_apps=10
 
 # Qualcomm
 com.qc.hardware=true
+debug.sf.hw=1
+debug.composition.type=gpu
 dev.pm.dyn_sample_period=700000
 dev.pm.dyn_samplingrate=1
+hwui.render_dirty_regions.7x27A=true
 ro.hw_plat=7x27A
 ro.vendor.extension_library=/system/lib/libqc-opt.so
 
@@ -57,4 +58,28 @@ ro.vold.umsdirtyratio=50
 
 # Wi-Fi
 wifi.interface=eth0
-wifi.supplicant_scan_interval=15
+wifi.supplicant_scan_interval=120
+
+# Various
+ro.kernel.android.checkjni=0
+ro.kernel.checkjni=0 
+persist.sys.use_dithering=0 
+persist.sys.purgeable_assets=1
+media.stagefright.enable-meta=true
+media.stagefright.enable-record=false
+windowsmgr.max_events_per_sec=300
+ro.max.fling_velocity=12000
+ro.min.fling_velocity=8000
+debug.performance.tuning=1
+video.accelerate.hw=1     
+
+# NET
+net.tcp.buffersize.default=6144,87380,1048576,6144,87380,524288
+net.tcp.buffersize.wifi=524288,1048576,2097152,524288,1048576,2097152
+net.tcp.buffersize.umts=6144,87380,1048576,6144,87380,524288
+net.tcp.buffersize.gprs=6144,87380,1048576,6144,87380,524288
+net.tcp.buffersize.edge=6144,87380,524288,6144,16384,262144
+net.tcp.buffersize.hspa=6144,87380,524288,6144,16384,262144
+net.tcp.buffersize.lte=524288,1048576,2097152,524288,1048576,2097152
+net.tcp.buffersize.hsdpa=6144,87380,1048576,6144,87380,1048576
+net.tcp.buffersize.evdo_b=6144,87380,1048576,6144,87380,1048576  
