@@ -23,8 +23,8 @@ TARGET_ARCH_VARIANT_FPU := neon
 BOARD_USES_QCOM_HARDWARE := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 
-TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CFLAGS += -mtune=cortex-a5 -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a5 -mfpu=neon -mfloat-abi=softfp
 
 # Optimisations used by Qualcomm
 TARGET_CORTEX_CACHE_LINE_32 := true
@@ -32,7 +32,7 @@ TARGET_USE_SPARROW_BIONIC_OPTIMIZATION := true
 TARGET_AVOID_DRAW_TEXTURE_EXTENSION := true
 TARGET_USES_16BPPSURFACE_FOR_OPAQUE := true
 
-ARCH_ARM_HIGH_OPTIMIZATION := true 
+ARCH_ARM_HIGH_OPTIMIZATION := true
 ARCH_ARM_HAVE_32_BYTE_CACHE_LINES := true
 
 TARGET_USES_ION := false
@@ -44,8 +44,6 @@ TARGET_OTA_ASSERT_DEVICE := u8815,hwu8815,u8818,hwu8818
 TARGET_SPECIFIC_HEADER_PATH := device/huawei/u8815/include
 
 # Audio
-#BOARD_USES_ALSA_AUDIO := true
-#TARGET_QCOM_AUDIO_VARIANT := caf
 TARGET_PROVIDES_LIBAUDIO := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_VOIP_ENABLED
 
@@ -102,12 +100,12 @@ BOARD_FM_DEVICE := bcm4330
 BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 
 # Wi-Fi
-BOARD_WLAN_DEVICE 			:= bcmdhd
+BOARD_WLAN_DEVICE 			       := bcmdhd
 WPA_SUPPLICANT_VERSION 			:= VER_0_8_X
 BOARD_WPA_SUPPLICANT_DRIVER 		:= NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB 	:= lib_driver_cmd_bcmdhd
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB 	       := lib_driver_cmd_bcmdhd
 BOARD_HOSTAPD_DRIVER 			:= NL80211
-BOARD_HOSTAPD_PRIVATE_LIB 		:= lib_driver_cmd_bcmdhd
+BOARD_HOSTAPD_PRIVATE_LIB 		       := lib_driver_cmd_bcmdhd
 WIFI_DRIVER_MODULE_PATH     		:= "/system/lib/modules/bcmdhd.ko"
 WIFI_DRIVER_MODULE_NAME     		:= "bcmdhd"
 WIFI_DRIVER_MODULE_ARG      		:= "firmware_path=/system/etc/fw_4330_b2.bin nvram_path=/system/etc/nvram_4330.txt"
@@ -116,20 +114,16 @@ WIFI_DRIVER_FW_PATH_STA     		:= "/system/etc/fw_4330_b2.bin"
 WIFI_DRIVER_FW_PATH_AP      		:= "/system/etc/fw_4330_b2.bin"
 WIFI_DRIVER_FW_PATH_P2P     		:= "/system/etc/fw_4330_b2.bin"
 BOARD_LEGACY_NL80211_STA_EVENTS		:= true
-#BOARD_USE_SERNUM_FOR_MAC 			:= true
+TARGET_CUSTOM_WIFI                        := ../../device/huawei/u8815/libhardware_legacy/wifi/wifi.c
 
-TARGET_CUSTOM_WIFI := ../../device/huawei/u8815/libhardware_legacy/wifi/wifi.c
-
-# Kernel 
-TARGET_KERNEL_SOURCE := kernel/huawei/G300
-#TARGET_KERNEL_CUSTOM_TOOLCHAIN := linaro/bin/arm-linux-gnueabihf-
-TARGET_KERNEL_CONFIG := u8818_defconfig
+# Kernel
+TARGET_KERNEL_SOURCE := kernel/huawei/u8815
+TARGET_KERNEL_CONFIG := u8815_defconfig
 BOARD_KERNEL_CMDLINE := androidboot.hardware=huawei
 BOARD_KERNEL_BASE := 0x00200000
 BOARD_PAGE_SIZE := 2048
 
 # Recovery
-#BOARD_TOUCH_RECOVERY := true
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 BOARD_CUSTOM_GRAPHICS := ../../../device/huawei/u8815/recovery/graphics.c
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/huawei/u8815/recovery/recovery-keys.c
