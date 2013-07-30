@@ -178,6 +178,63 @@ service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p10 /dev/block/mmc
     user root
     disabled
 
+service hciattach /system/bin/sh /system/etc/bluetooth/init.bcm.bt.sh
+    class main
+    user bluetooth
+    group qcom_oncrpc bluetooth net_bt_admin system
+    disabled
+    oneshot
+
+service bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
+    class main
+    disabled
+    oneshot
+
+service sapd /system/bin/sdptool add --channel=15 SAP
+    class main
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+service dund /system/bin/sdptool add --channel=1 DUN
+    class main
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+service bridgemgrd /system/bin/bridgemgrd
+    class main
+    user radio
+    group radio
+    disabled
+
+service port-bridge /system/bin/port-bridge /dev/smd0 /dev/ttyGS0
+    class late_start
+    user system
+    group system inet
+    disabled
+
+on property:ro.baseband="msm"
+    start port-bridge
+    # Enable BT-DUN only for all msms
+    setprop ro.qualcomm.bluetooth.dun true
+
+on property:ro.baseband="unknown"
+    start port-bridge
+
+
+service pcm-bridge /system/bin/pcm-bridge /dev/smd7 /dev/ttyGS1
+
+service qmuxd /system/bin/qmuxd
+    class main
+    user radio
+    group radio
+
+service netmgrd /system/bin/netmgrd
+    class main
+
 service qmuxd /system/bin/qmuxd
     class main
     user radio
@@ -232,8 +289,6 @@ service dhcpcd_bnep0 /system/bin/dhcpcd -BKLG
     class main
     disabled
     oneshot
-
-
 
 service oem_rpc_svc /system/bin/oem_rpc_svc
     class main
